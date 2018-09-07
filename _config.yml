@@ -5,10 +5,10 @@ description: >
   Jekyll Template for Project Websites
   providing documentation and blog post pages.
 
-baseurl: "/jekyll-doc-theme" # the subpath of your site, e.g. /blog/
-url: https://aksakalli.github.io/jekyll-doc-theme # the base hostname & protocol for your site
-git_address: https://github.com/aksakalli/jekyll-doc-theme
-git_edit_address: https://github.com/aksakalli/jekyll-doc-theme/blob/gh-pages
+baseurl: "/RandomProcesses" # the subpath of your site, e.g. /blog/
+url: https://dwatkins.github.io/RandomProcesses # the base hostname & protocol for your site
+git_address: https://github.com/dwatkins/RandomProcesses
+git_edit_address: https://github.com/dwatkins/RandomProcesses/blob/gh-pages
 
 # theme options from https://bootswatch.com/
 # comment out this to use default Bootstrap
@@ -17,11 +17,12 @@ bootwatch: paper
 # Build settings
 markdown: kramdown
 highlighter: rouge
-gems:
+plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-relative-links
 
 exclude:
   - Gemfile
@@ -54,3 +55,7 @@ collections:
   posts:
     permalink: /blog/:year/:month/:day/:title/
     output: true
+
+relative_links:
+  enabled:     true
+  collections: true
