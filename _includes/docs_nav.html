@@ -1,4 +1,5 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<<<<<<< HEAD
 {% assign docname = page.sectionid %}
 {% assign dir = docname | prepend: "/" | append: "/" %}
 {% for section in site.data.[docname] %}
@@ -10,14 +11,21 @@
         </a>
       </h4>
     </div>
-    <div id="collapse-{{forloop.index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <ul class="list-group">
+      {% assign collapsed = true %}
+      {% for item in section.docs %}
+        {% assign item_url = item | prepend:"dir" | append:"/" %}
+        {% if item_url == page.url %}
+          {% assign collapsed = false %}
+        {% endif %}
+      {% endfor %}
+      <div class="panel-collapse{% if collapsed %} collapse{% endif %}" id="collapse-{{forloop.index}}" role="tabpanel" aria-label="Side Navigation">
+      <div class="list-group">
         {% for item in section.docs %}
           {% assign item_url = item | prepend: dir | append:"/" %}
           {% assign p = site[docname] | where:"url", item_url | first %}
-          <a class="list-group-item {% if item_url == page.url %}active{% endif %}" href="{{ p.url  | prepend: site.baseurl }}">{{ p.title }}</a>
+          <a class="list-group-item {% if item_url == page.url %}active{% endif %}" href="{{ p.url  | relative_url }}">{{ p.title }}</a>
         {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
 {% endfor %}
